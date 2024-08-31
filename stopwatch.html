@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        #d1{
+            height: 500px;
+            width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            gap: 10px;
+            background-color: white;
+            margin-left: 34%;
+            margin-top: 7%;
+            border: 5px dotted green;
+            flex-direction: column;
+        }
+        span{
+            text-decoration: underline ;
+        }
+       
+    </style>
+</head>
+<body>
+   <div id="d1">
+   <h3 style="text-decoration: underline;">Stop watch</h3>
+   <div style="display: flex; gap: 10px; font-size: 30px;">
+    <span>hour</span><span>min</span><span>sec</span>
+   </div>
+    <div>
+        <span id="hour">
+            00
+        </span>
+        <span id="min">
+            00
+        </span>
+        <span id="sec">
+            00
+        </span>
+    </div>
+
+    <div>
+        <button id="start" class="c">
+            start
+        </button>
+        <button id="stop" class="c">
+            stop
+        </button>
+    </div>
+   </div>
+
+
+</body>
+</html>
+
+<script>
+    let s = document.getElementById('start');
+    let st = document.getElementById('stop');
+
+    let hour = 00;
+    let min = 00;
+    let sec = 00;
+    let count = 00;
+
+    s.addEventListener('click',function(){
+        time=true;
+        start();
+    })
+    st.addEventListener('click',function(){
+        time=false;
+    })
+
+    function start(){
+        if(time){
+            count++;
+                if(count == 100){
+                    sec++;
+                    count=0;
+                }
+                if(sec == 60){
+                    min++;
+                    sec=0;
+
+                }
+                if(min == 60){
+                    hour++;
+                    min = 0;
+                }
+               let hstring = hour;
+               let mstring = min;
+               let sstring = sec;
+               let cstring = count;
+               
+               if(hour < 10){
+                hstring = "0"+hstring;
+               }
+               if(min < 10){
+                mstring = "0"+mstring;
+               }
+               if(sec < 10){
+                sstring = "0"+sstring;
+               }
+               if(count < 10){
+                cstring = "0"+cstring;
+               }
+               document.getElementById('hour').innerHTML = hstring;
+               document.getElementById('min').innerHTML = mstring;
+               document.getElementById('sec').innerHTML = sstring;
+               document.getAnimations('count').innerHTML = cstring;
+               setTimeout(start,1);
+        }
+    }
+</script>
